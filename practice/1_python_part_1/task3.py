@@ -16,4 +16,24 @@ from typing import Iterable
 
 
 def build_from_unique_words(*lines: Iterable[str], word_number: int) -> str:
-    ...
+    """ Construct string of unique letters where enumeration matches given word_number."""
+
+    solution = ""
+    for line in lines:
+        line_list = str(line).split()
+        line_list_uniq = []
+
+        # find unique items in right order
+        for item in line_list:
+            if item not in line_list_uniq:
+                line_list_uniq.append(item)
+
+        for num, item in enumerate(line_list_uniq):
+            if num == word_number:
+                # add item to the solution
+                solution += item
+                solution += ' '
+
+    return solution.strip()
+
+
