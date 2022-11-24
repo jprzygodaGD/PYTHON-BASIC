@@ -22,3 +22,10 @@ def generate_words(n=20):
         words.append(word)
 
     return words
+
+
+def write_in_encoding(file, encode, separate):
+    with open(file, "w", encoding=encode) as f:
+        f.write("{}".format(separate).join(generate_words()))
+
+print(generate_words(10))

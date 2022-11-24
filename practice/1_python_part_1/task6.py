@@ -7,7 +7,7 @@ Examples:
         -2
         0
         34
-    >>> get_min_max('filename')
+    #>>> get_min_max('filename')
     (-2, 34)
 
 Hint:
@@ -16,7 +16,7 @@ with open(filename) as opened_file:
     for line in opened_file:
         ...
 """
-#TODO Ask about test cases
+
 from typing import Tuple
 
 
@@ -33,4 +33,4 @@ def get_min_max(filename: str) -> Tuple[int, int]:
     return min(solution), max(solution)
 
 
-
+print(get_min_max("numbers.txt"))
