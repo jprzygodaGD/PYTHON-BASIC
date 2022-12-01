@@ -2,20 +2,47 @@
 Write a function which detects if entered string is http/https domain name with optional slash at the and
 Restriction: use re module
 Note that address may have several domain levels
-    >>>is_http_domain('http://wikipedia.org')
-    True
-    >>>is_http_domain('https://ru.wikipedia.org/')
-    True
-    >>>is_http_domain('griddynamics.com')
-    False
+    # >>>is_http_domain('http://wikipedia.org')
+    # True
+    # >>>is_http_domain('https://ru.wikipedia.org/')
+    # True
+    # >>>is_http_domain('griddynamics.com')
+    # False
 """
 import re
+import pytest
 
 
 def is_http_domain(domain: str) -> bool:
-    ...
+
+    if re.match(r'^http(s)?', domain):
+        return True
+    return False
 
 
 """
 write tests for is_http_domain function
 """
+valid_domains = [
+    'http://wikipedia.org',
+    'https://ru.wikipedia.org/',
+    'https://docs.python.org/3/'
+]
+
+
+@pytest.mark.parametrize('domain', valid_domains)
+def test_valid_domains(domain):
+    assert is_http_domain(domain)
+
+
+invalid_domains = [
+    'htt://wikipedia.org',
+    'griddynamics.com',
+    'h/docs.python.org/3/'
+]
+
+
+@pytest.mark.parametrize('domain', invalid_domains)
+def test_invalid_domains(domain):
+    assert not is_http_domain(domain)
+
